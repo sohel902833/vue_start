@@ -7,27 +7,42 @@
   <div>{{ `${5 + 7}` }}</div>
   <!-- render html into dom -->
   <div v-html="html"></div>
-  <h2 v-bind:id="htmlId">Heading</h2>
-  <button v-bind:disabled="isButtonDisabled">Click Me!</button>
+  <h2 :id="htmlId">Heading</h2>
+  <button :disabled="isButtonDisabled">Click Me!</button>
 
   <!-- importing class -->
   <h1 class="underline">Underline text</h1>
-  <h1 class="underline" v-bind:class="status">Status {{ status }}</h1>
-  <h2 v-bind:class="isPromoted && 'promoted'">Promoted Movie</h2>
-  <h4 v-bind:class="isSoldout ? 'sold-out' : 'new'">Soldout?Movie</h4>
+  <h1 class="underline" :class="status">Status {{ status }}</h1>
+  <h2 :class="isPromoted && 'promoted'">Promoted Movie</h2>
+  <h4 :class="isSoldout ? 'sold-out' : 'new'">Soldout?Movie</h4>
   <!-- array bind class  -->
-  <h3 v-bind:class="[isSoldout ? 'sold-out' : 'new', isPromoted && 'promoted']">
+  <h3 :class="[isSoldout ? 'sold-out' : 'new', isPromoted && 'promoted']">
     Array Classes
   </h3>
   <!-- object conditional text  -->
   <h2
-    v-bind:class="{
+    :class="{
       promoted: isPromoted,
       'sold-out': isSoldout,
     }"
   >
     Object Conditional Movie
   </h2>
+  <!-- inline css  -->
+  <h3
+    :style="{
+      color: highlightColor,
+      'font-size': `${headerSize}px`,
+      padding: '20px',
+      'background-color': 'red',
+    }"
+  >
+    Inline Style Css From State
+  </h3>
+  <h2 :style="headerStyleObj">Style Object</h2>
+
+  <!-- inline css with array object -->
+  <h1 :style="[baseStyleObject, successStyleObject]">Inline Style Array</h1>
 </template>
 
 <script>
@@ -44,6 +59,24 @@ export default {
       status: "danger",
       isPromoted: true,
       isSoldout: false,
+      highlightColor: "green",
+      headerSize: 60,
+      headerStyleObj: {
+        color: "orange",
+        fontSize: "50px",
+        padding: "20px",
+        background: "red",
+      },
+      baseStyleObject: {
+        color: "green",
+        backgroundColor: "lightgreen",
+        border: "1px solid green",
+      },
+      successStyleObject: {
+        color: "green",
+        backgroundColor: "lightgreen",
+        border: "1px solid green",
+      },
     };
   },
 };
